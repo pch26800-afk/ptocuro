@@ -178,16 +178,32 @@
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(data)
     })
-      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (r) {
+        return r.text().then(function (t) {
+          var j = {};
+          try { j = JSON.parse(t); } catch (err) { j = { message: "HTTP " + r.status }; }
+          return { ok: r.ok, j: j };
+        });
+      })
       .then(function (res) {
-        if (!res.ok || String(res.j.success) !== "true") throw new Error(res.j.message || "Erreur");
+        if (!res.ok || String(res.j.success) !== "true") throw new Error(res.j.message || "Erreur inconnue");
         form.reset();
         showStatus("ok", "<strong>Merci, votre demande est bien envoyée.</strong> Nous revenons vers vous sous " +
           (config.delaiReponse || "peu") + ".");
       })
-      .catch(function () {
-        showStatus("err", "L'envoi n'a pas abouti. <a href=\"" + mailtoFallback(data) +
-          "\">Cliquez ici pour envoyer votre demande par e-mail</a> (elle est déjà rédigée).");
+      .catch(function (err) {
+        var msg = String((err && err.message) || "");
+        var fallback = "<a href=\"" + mailtoFallback(data) +
+          "\">Cliquez ici pour envoyer votre demande par e-mail</a> (elle est déjà rédigée).";
+        if (/activat/i.test(msg)) {
+          showStatus("err", "<strong>Formulaire en attente d'activation.</strong> Un e-mail d'activation vient d'être envoyé " +
+            "au propriétaire du site. En attendant : " + fallback);
+        } else if (location.protocol === "file:") {
+          showStatus("err", "Le formulaire ne fonctionne que sur le site en ligne (pas en ouvrant le fichier sur l'ordinateur). " + fallback);
+        } else {
+          showStatus("err", "L'envoi n'a pas abouti. " + fallback +
+            "<br><small>Détail : " + msg.replace(/[<>&]/g, "") + "</small>");
+        }
       })
       .then(function () {
         submitBtn.disabled = false;
