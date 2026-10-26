@@ -174,8 +174,12 @@
     submitBtn.disabled = true;
     submitBtn.textContent = "Envoi en cours…";
 
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 20000);
+
     fetch("https://formsubmit.co/ajax/" + encodeURIComponent(formEmail), {
       method: "POST",
+      signal: ctrl ? ctrl.signal : undefined,
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(data)
     })
@@ -196,7 +200,9 @@
         var msg = String((err && err.message) || "");
         var fallback = "<a href=\"" + mailtoFallback(data) +
           "\">Cliquez ici pour envoyer votre demande par e-mail</a> (elle est déjà rédigée).";
-        if (/activat/i.test(msg)) {
+        if (err && err.name === "AbortError") {
+          showStatus("err", "<strong>Le service d'envoi ne répond pas pour le moment.</strong> " + fallback);
+        } else if (/activat/i.test(msg)) {
           showStatus("err", "<strong>Formulaire en attente d'activation.</strong> Un e-mail d'activation vient d'être envoyé " +
             "au propriétaire du site. En attendant : " + fallback);
         } else if (location.protocol === "file:") {
@@ -207,6 +213,7 @@
         }
       })
       .then(function () {
+        clearTimeout(timer);
         submitBtn.disabled = false;
         submitBtn.textContent = "Envoyer ma demande";
         statusBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
