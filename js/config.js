@@ -20,7 +20,7 @@
 window.PROCURO_CONFIG = {
   email: "contact@procuro-group.com",
   emailFormulaire: "charrel.paul@outlook.com",
-  telephone: "[VOTRE NUMÉRO]",
-  whatsapp: "",
+  telephone: "+33 6 40 13 61 37",
+  whatsapp: "33640136137",
   delaiReponse: "24 h ouvrées"
 };
