@@ -2,7 +2,9 @@
   "use strict";
 
   var config = window.PROCURO_CONFIG || {};
-  var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.email || "");
+  var isEmail = function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v || ""); };
+  var emailOk = isEmail(config.email);
+  var formEmail = isEmail(config.emailFormulaire) ? config.emailFormulaire : config.email;
 
   // --- Coordonnées issues de config.js ---
   document.querySelectorAll("[data-config]").forEach(function (el) {
@@ -163,7 +165,7 @@
     if (form._honey.value) return; // robot
 
     var data = payload();
-    if (!emailOk) {
+    if (!isEmail(formEmail)) {
       showStatus("err", "Le formulaire n'est pas encore configuré : renseignez l'adresse e-mail dans <code>js/config.js</code>.");
       return;
     }
@@ -171,7 +173,7 @@
     submitBtn.disabled = true;
     submitBtn.textContent = "Envoi en cours…";
 
-    fetch("https://formsubmit.co/ajax/" + encodeURIComponent(config.email), {
+    fetch("https://formsubmit.co/ajax/" + encodeURIComponent(formEmail), {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(data)
