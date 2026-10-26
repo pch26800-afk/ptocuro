@@ -16,11 +16,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
+<script>document.documentElement.classList.add("js")</script>
 <script src="js/config.js" defer></script>
 <script src="js/main.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
+<div class="scroll-progress" aria-hidden="true"></div>
 
 <header class="site-header">
 <div class="container header-inner">
@@ -34,8 +36,10 @@
 </button>
 <nav id="nav" class="nav" aria-label="Navigation principale">
 <a href="#services">Services</a>
+<a href="#secteurs">Secteurs</a>
 <a href="#methode">Méthode</a>
 <a href="#tarifs">Tarifs</a>
+<a href="#faq">FAQ</a>
 <a href="#contact" class="btn btn-navy">Demander un devis</a>
 </nav>
 </div>
@@ -44,77 +48,122 @@
 <main id="contenu">
 <span id="top"></span>
 
-<section class="dark">
+<section class="dark hero-wrap">
+<div class="hero-bg" aria-hidden="true"><span class="orb orb-1"></span><span class="orb orb-2"></span><span class="hero-grid"></span></div>
 <div class="container hero">
 <div class="stack" style="gap:24px">
-<p class="eyebrow">Agent de sourcing en Asie</p>
-<h1>On trouve votre produit en Asie. Vous vous concentrez sur la vente.</h1>
-<p class="lead">Chine, Vietnam, Inde et dans toute l'Asie : recherche d'usines, négociation, échantillons, contrôle qualité et livraison jusqu'en France. Un seul interlocuteur, qui importe lui-même depuis des années.</p>
-<div class="actions">
-<a href="#contact" class="btn btn-red">Décrire mon produit</a>
+<p class="eyebrow eyebrow-pill" data-reveal><span class="dot" aria-hidden="true"></span>Agent de sourcing en Asie</p>
+<h1 data-reveal style="--d:80ms">On trouve votre produit <span class="hl">en Asie</span>. Vous vous concentrez sur la vente.</h1>
+<p class="lead" data-reveal style="--d:160ms">Chine, Vietnam, Inde et dans toute l'Asie : recherche d'usines, négociation, échantillons, contrôle qualité et livraison jusqu'en France. Un seul interlocuteur, qui importe lui-même depuis des années.</p>
+<div class="actions" data-reveal style="--d:240ms">
+<a href="#contact" class="btn btn-red btn-arrow">Décrire mon produit <span aria-hidden="true">→</span></a>
 <a href="#methode" class="btn btn-ghost">Voir comment ça marche</a>
 </div>
 </div>
-<div class="receive stack">
+<div class="receive stack" data-reveal style="--d:200ms">
 <p class="receive-title">Ce que vous recevez</p>
-<div class="check"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2A79F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><p>Une sélection de fournisseurs vérifiés, avec prix et délais comparés</p></div>
-<div class="check"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2A79F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><p>Des échantillons envoyés chez vous avant toute commande</p></div>
-<div class="check"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2A79F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><p>Un contrôle qualité avant le départ de la marchandise</p></div>
-<div class="check"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2A79F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><p>Un devis transport et douane clair, sans surprise à l'arrivée</p></div>
+<div class="check" data-reveal style="--d:320ms"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2A79F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><p>Une sélection de fournisseurs vérifiés, avec prix et délais comparés</p></div>
+<div class="check" data-reveal style="--d:410ms"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2A79F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><p>Des échantillons envoyés chez vous avant toute commande</p></div>
+<div class="check" data-reveal style="--d:500ms"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2A79F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><p>Un contrôle qualité avant le départ de la marchandise</p></div>
+<div class="check" data-reveal style="--d:590ms"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2A79F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><p>Un devis transport et douane clair, sans surprise à l'arrivée</p></div>
 </div>
 </div>
-<div class="container hero-photo">
-<img src="images/port.jpg" width="1800" height="957" alt="Porte-conteneurs en cours de chargement dans un grand port asiatique au crépuscule">
+<div class="container hero-photo" data-reveal>
+<div class="photo-frame"><img src="images/port.jpg" width="1800" height="957" alt="Porte-conteneurs en cours de chargement dans un grand port asiatique au crépuscule"></div>
+</div>
+<div class="container facts-wrap">
+<dl class="facts" data-reveal>
+<div class="fact"><dt><span data-count="3">3</span></dt><dd>pays de production&nbsp;: Chine, Vietnam, Inde</dd></div>
+<div class="fact"><dt><span data-count="1">1</span></dt><dd>interlocuteur francophone, du devis à la livraison</dd></div>
+<div class="fact"><dt><span data-count="0">0</span>&nbsp;%</dt><dd>de marge cachée sur les frais refacturés</dd></div>
+<div class="fact"><dt><span data-count="190">190</span>&nbsp;€</dt><dd>HT pour lancer une recherche</dd></div>
+</dl>
 </div>
 </section>
 
 <section id="services" class="container section stack" style="gap:48px">
-<div class="section-head stack">
+<div class="section-head stack" data-reveal>
 <p class="eyebrow">Services</p>
 <h2>De l'idée au produit livré chez vous</h2>
 <p class="sub">Vous pouvez nous confier tout le parcours, ou seulement l'étape qui vous pose problème.</p>
 </div>
 <div class="grid grid-cards">
-<div class="card">
+<div class="card" data-reveal style="--d:0ms">
 <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A82C23" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
 <h3>Recherche de fournisseurs</h3>
 <p>Nous identifions les usines capables de fabriquer votre produit, en Chine ou ailleurs en Asie, et choisissons le pays le plus avantageux pour vous.</p>
 </div>
-<div class="card">
+<div class="card" data-reveal style="--d:90ms">
 <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A82C23" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
 <h3>Négociation</h3>
 <p>Prix, quantités minimales, délais, conditions de paiement : nous négocions pour vous et vous présentons les meilleures offres.</p>
 </div>
-<div class="card">
+<div class="card" data-reveal style="--d:180ms">
 <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A82C23" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
 <h3>Qualité et conformité</h3>
 <p>Échantillons, inspection avant expédition et vérification des normes européennes (CE, REACH…) pour éviter les blocages en douane.</p>
 </div>
-<div class="card">
+<div class="card" data-reveal style="--d:270ms">
 <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A82C23" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
 <h3>Transport et douane</h3>
 <p>Maritime, aérien ou express : nous organisons l'acheminement et le dédouanement jusqu'à votre adresse en France.</p>
 </div>
 </div>
 <div class="grid grid-2">
-<figure>
-<img src="images/usine.jpg" width="1000" height="1499" loading="lazy" alt="Ouvrières sur une chaîne d'assemblage en usine">
+<figure data-reveal>
+<div class="photo-frame"><img src="images/usine.jpg" width="1000" height="1499" loading="lazy" alt="Ouvrières sur une chaîne d'assemblage en usine"></div>
 <figcaption>Suivi de production directement en usine</figcaption>
 </figure>
-<figure>
-<img src="images/qualite.jpg" width="1400" height="933" loading="lazy" alt="Technicien mesurant une pièce métallique au pied à coulisse">
+<figure data-reveal>
+<div class="photo-frame"><img src="images/qualite.jpg" width="1400" height="933" loading="lazy" alt="Technicien mesurant une pièce métallique au pied à coulisse"></div>
 <figcaption>Contrôle des dimensions et de la qualité avant expédition</figcaption>
 </figure>
 </div>
 </section>
 
+<section id="secteurs" class="dark sectors-wrap">
+<div class="container section stack" style="gap:48px">
+<div class="section-head stack" data-reveal>
+<p class="eyebrow">Nos secteurs</p>
+<h2>Des produits de tous les jours aux équipements industriels</h2>
+<p class="sub">Notre réseau d'usines couvre des domaines très différents. Votre produit n'est pas dans la liste&nbsp;? Décrivez-le-nous quand même.</p>
+</div>
+<div class="sectors">
+<a class="sector" href="#contact" data-secteur="Textile" data-reveal style="--d:0ms">
+<span class="sector-icon"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg></span>
+<h3>Textile</h3>
+<p>Vêtements, linge de maison, tissus, sacs et accessoires, avec ou sans marquage à votre marque.</p>
+<span class="sector-link">Demander un devis <span aria-hidden="true">→</span></span>
+</a>
+<a class="sector" href="#contact" data-secteur="Machines industrielles" data-reveal style="--d:90ms">
+<span class="sector-icon"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+<h3>Machines industrielles</h3>
+<p>Équipements de production, machines-outils, pièces détachées et outillage, avec vérification de la conformité CE.</p>
+<span class="sector-link">Demander un devis <span aria-hidden="true">→</span></span>
+</a>
+<a class="sector" href="#contact" data-secteur="Décoration" data-reveal style="--d:180ms">
+<span class="sector-icon"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6l3 8H6z"/><path d="M12 10v8"/><path d="M8 22h8"/><path d="M12 18v4"/></svg></span>
+<h3>Décoration</h3>
+<p>Mobilier, luminaires, objets et accessoires déco pour boutiques, e-commerce et professionnels de l'aménagement.</p>
+<span class="sector-link">Demander un devis <span aria-hidden="true">→</span></span>
+</a>
+<a class="sector" href="#contact" data-secteur="Autre" data-reveal style="--d:270ms">
+<span class="sector-icon"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></svg></span>
+<h3>Et bien d'autres</h3>
+<p>Emballages, articles promotionnels, produits sur mesure… Si ça se fabrique en Asie, nous pouvons le trouver.</p>
+<span class="sector-link">Demander un devis <span aria-hidden="true">→</span></span>
+</a>
+</div>
+</div>
+</section>
+
 <section id="methode" class="white">
 <div class="container section stack" style="gap:48px">
-<div class="section-head stack">
+<div class="section-head stack" data-reveal>
 <p class="eyebrow">Méthode</p>
 <h2>Comment ça marche</h2>
 </div>
-<ol class="steps" style="list-style:none;margin:0;padding:0">
+<ol class="steps" data-reveal style="list-style:none;margin:0;padding:0">
 <li class="step"><span class="step-num" aria-hidden="true">01</span><h3>Vous décrivez le produit</h3><p class="muted">Photos, caractéristiques, quantités, budget cible. Un simple formulaire suffit.</p></li>
 <li class="step"><span class="step-num" aria-hidden="true">02</span><h3>On compare les usines</h3><p class="muted">Vous recevez une sélection de fournisseurs avec prix, délais et quantités minimales.</p></li>
 <li class="step"><span class="step-num" aria-hidden="true">03</span><h3>Vous validez l'échantillon</h3><p class="muted">L'échantillon arrive chez vous. Vous ne commandez que si le produit vous convient.</p></li>
@@ -125,42 +174,47 @@
 
 <section class="container section why">
 <div class="stack" style="gap:16px">
-<p class="eyebrow">Pourquoi nous</p>
-<h2>Nous importons nous-mêmes. Nous savons où ça coince.</h2>
-<p class="intro">Avant d'aider nos clients, nous avons importé pour notre propre activité : fournisseurs peu fiables, échantillons qui ne ressemblent pas à la production, frais de douane imprévus… Nous mettons cette expérience à votre service.</p>
-<img src="images/entrepot.jpg" width="1000" height="1333" loading="lazy" alt="Allée d'entrepôt avec des rayonnages remplis de cartons">
+<p class="eyebrow" data-reveal>Pourquoi nous</p>
+<h2 data-reveal>Nous importons nous-mêmes. Nous savons où ça coince.</h2>
+<p class="intro" data-reveal>Avant d'aider nos clients, nous avons importé pour notre propre activité : fournisseurs peu fiables, échantillons qui ne ressemblent pas à la production, frais de douane imprévus… Nous mettons cette expérience à votre service.</p>
+<div class="photo-frame" data-reveal><img src="images/entrepot.jpg" width="1000" height="1333" loading="lazy" alt="Allée d'entrepôt avec des rayonnages remplis de cartons"></div>
 </div>
 <div class="stack" style="gap:16px">
-<div class="point"><p class="point-title">Un interlocuteur francophone</p><p class="muted">Vous échangez en français, nous gérons la communication avec les usines.</p></div>
-<div class="point"><p class="point-title">Des fournisseurs déjà testés</p><p class="muted">Un réseau construit au fil de nos propres commandes.</p></div>
-<div class="point"><p class="point-title">Des prix transparents</p><p class="muted">Vous voyez le prix usine et notre rémunération, séparément.</p></div>
+<div class="point" data-reveal style="--d:0ms"><p class="point-title">Un interlocuteur francophone</p><p class="muted">Vous échangez en français, nous gérons la communication avec les usines.</p></div>
+<div class="point" data-reveal style="--d:110ms"><p class="point-title">Des fournisseurs déjà testés</p><p class="muted">Un réseau construit au fil de nos propres commandes.</p></div>
+<div class="point" data-reveal style="--d:220ms"><p class="point-title">Des prix transparents</p><p class="muted">Vous voyez le prix usine et notre rémunération, séparément.</p></div>
 </div>
 </section>
 
 <section class="dark">
 <div class="container section stack" style="gap:40px">
-<div class="section-head stack">
+<div class="section-head stack" data-reveal>
 <p class="eyebrow">Notre réseau</p>
 <h2>Des usines en Asie, une livraison en France</h2>
 <p class="sub">Nous choisissons le pays le plus adapté à votre produit, puis nous gérons tout le trajet jusqu'à chez vous.</p>
 </div>
-<svg class="map" role="img" aria-label="Carte des liaisons entre la France, l'Inde, la Chine et le Vietnam" viewBox="0 0 1100 420">
+<svg class="map" data-reveal role="img" aria-label="Carte des liaisons entre la France, l'Inde, la Chine et le Vietnam" viewBox="0 0 1100 420">
 <defs><pattern id="pts" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="2" fill="#2B3D57"/></pattern></defs>
 <rect width="1100" height="420" rx="18" fill="url(#pts)"/>
-<g fill="none" stroke="#C8372D" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 10">
-<path class="route" d="M150 140C400 20 700 30 900 150"/>
-<path class="route" d="M150 140C380 120 560 170 690 250"/>
-<path class="route" d="M150 140C420 60 720 120 850 280"/>
+<g fill="none" stroke="#C8372D" stroke-width="3" stroke-linecap="round">
+<path class="route" id="r1" pathLength="1" d="M150 140C400 20 700 30 900 150"/>
+<path class="route" id="r2" pathLength="1" d="M150 140C380 120 560 170 690 250"/>
+<path class="route" id="r3" pathLength="1" d="M150 140C420 60 720 120 850 280"/>
+</g>
+<g class="ships" fill="#F2A79F">
+<circle r="5"><animateMotion dur="7s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#r1"/></animateMotion></circle>
+<circle r="5"><animateMotion dur="6s" begin="-2s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#r2"/></animateMotion></circle>
+<circle r="5"><animateMotion dur="8s" begin="-5s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#r3"/></animateMotion></circle>
 </g>
 <circle cx="150" cy="140" r="12" fill="#FFFFFF"/><circle cx="150" cy="140" r="24" fill="none" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="2"/>
 <text x="150" y="190" text-anchor="middle" fill="#FFFFFF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">France</text>
 <text class="sublabel" x="150" y="216" text-anchor="middle" fill="#C9D1DC" font-family="Inter, sans-serif" font-size="16">Livraison et dédouanement</text>
-<circle cx="900" cy="150" r="12" fill="#C8372D"/>
+<circle class="pulse" cx="900" cy="150" r="12" fill="none" stroke="#C8372D" stroke-width="2"/><circle cx="900" cy="150" r="12" fill="#C8372D"/>
 <text x="900" y="196" text-anchor="middle" fill="#FFFFFF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">Chine</text>
 <text class="sublabel" x="900" y="220" text-anchor="middle" fill="#C9D1DC" font-family="Inter, sans-serif" font-size="16">Shenzhen, Yiwu, Canton</text>
-<circle cx="690" cy="250" r="12" fill="#C8372D"/>
+<circle class="pulse" cx="690" cy="250" r="12" fill="none" stroke="#C8372D" stroke-width="2"/><circle cx="690" cy="250" r="12" fill="#C8372D"/>
 <text x="690" y="292" text-anchor="middle" fill="#FFFFFF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">Inde</text>
-<circle cx="850" cy="280" r="12" fill="#C8372D"/>
+<circle class="pulse" cx="850" cy="280" r="12" fill="none" stroke="#C8372D" stroke-width="2"/><circle cx="850" cy="280" r="12" fill="#C8372D"/>
 <text x="876" y="286" fill="#FFFFFF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">Vietnam</text>
 </svg>
 </div>
@@ -168,13 +222,13 @@
 
 <section id="tarifs" class="white">
 <div class="container section stack" style="gap:48px">
-<div class="section-head stack">
+<div class="section-head stack" data-reveal>
 <p class="eyebrow">Tarifs</p>
 <h2>Deux formules simples</h2>
 <p class="sub">Zéro marge cachée : inspections qualité, échantillons et transport sont refacturés au prix réel, justificatifs à l'appui. Tarifs hors taxes.</p>
 </div>
 <div class="grid grid-2" style="gap:24px">
-<div class="plan">
+<div class="plan" data-reveal>
 <h3>Recherche</h3>
 <p class="price">190 € <span>HT par produit</span></p>
 <p class="muted">Idéal pour tester un fournisseur ou valider une idée. Ce forfait est déduit de notre commission si vous passez commande ensuite.</p>
@@ -185,7 +239,7 @@
 </ul>
 <a href="#contact" class="btn btn-outline" data-formule="Recherche (190 € HT)">Choisir cette formule</a>
 </div>
-<div class="plan plan-featured">
+<div class="plan plan-featured" data-reveal style="--d:120ms">
 <span class="badge">Le plus complet</span>
 <h3>Clé en main</h3>
 <p class="price">6 à 10 % <span>de la commande</span></p>
@@ -212,8 +266,42 @@
 </div>
 </section>
 
-<section id="contact" class="container section contact">
-<div class="contact-info stack">
+<section id="faq" class="container section stack" style="gap:40px">
+<div class="section-head stack" data-reveal>
+<p class="eyebrow">Questions fréquentes</p>
+<h2>Ce que nos clients nous demandent</h2>
+</div>
+<div class="faq" data-reveal>
+<details>
+<summary>Le forfait Recherche est-il perdu si je commande ensuite&nbsp;?</summary>
+<div class="faq-body"><p>Non. Les 190&nbsp;€ HT du forfait Recherche sont déduits de notre commission si vous passez commande avec la formule Clé en main.</p></div>
+</details>
+<details>
+<summary>Qui paie les échantillons, les inspections et le transport&nbsp;?</summary>
+<div class="faq-body"><p>Ces frais sont refacturés au prix réel, justificatifs à l'appui, sans aucune marge. Vous savez exactement ce que vous payez.</p></div>
+</details>
+<details>
+<summary>Dans quels pays travaillez-vous&nbsp;?</summary>
+<div class="faq-body"><p>Principalement en Chine, au Vietnam et en Inde, et plus largement dans toute l'Asie. Nous choisissons le pays le plus adapté à votre produit, à vos quantités et à votre budget.</p></div>
+</details>
+<details>
+<summary>Est-ce que vous gérez la douane et la livraison en France&nbsp;?</summary>
+<div class="faq-body"><p>Oui. Avec la formule Clé en main, nous organisons le transport (maritime, aérien ou express) et le dédouanement jusqu'à votre adresse. Vous recevez un devis transport et douane clair avant de vous engager.</p></div>
+</details>
+<details>
+<summary>Comment est calculée la commission Clé en main&nbsp;?</summary>
+<div class="faq-body"><p>Elle dépend du montant de la commande&nbsp;: 10&nbsp;% en dessous de 5&nbsp;000&nbsp;€ (minimum 350&nbsp;€), 8&nbsp;% de 5&nbsp;000 à 20&nbsp;000&nbsp;€, 6&nbsp;% de 20&nbsp;000 à 50&nbsp;000&nbsp;€, et sur devis au-delà. Le simulateur de la section Tarifs vous donne une estimation immédiate.</p></div>
+</details>
+<details>
+<summary>Le premier échange est-il payant&nbsp;?</summary>
+<div class="faq-body"><p>Non. Le premier échange est gratuit et sans engagement&nbsp;: décrivez votre produit dans le formulaire ci-dessous et nous revenons vers vous.</p></div>
+</details>
+</div>
+</section>
+
+<section id="contact" class="contact-wrap white">
+<div class="container section contact">
+<div class="contact-info stack" data-reveal>
 <p class="eyebrow">Contact</p>
 <h2 style="font-size:clamp(30px,4.5vw,40px);line-height:1.15">Parlez-nous de votre produit</h2>
 <p style="font-size:18px" class="muted">Réponse sous <span data-config="delaiReponse"></span>. Le premier échange est gratuit et sans engagement.</p>
@@ -223,7 +311,7 @@
 </div>
 </div>
 
-<form id="devis" class="form" novalidate>
+<form id="devis" class="form" novalidate data-reveal style="--d:120ms">
 <input type="hidden" name="subject" value="Nouvelle demande de devis – Procuro Group">
 <div class="hp" aria-hidden="true"><label for="site_web">Ne pas remplir</label><input id="site_web" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off"></div>
 
@@ -246,6 +334,16 @@
 </div>
 <div class="row-2">
 <div class="field">
+<label for="secteur">Secteur</label>
+<select id="secteur" name="secteur">
+<option value="Non précisé">Choisir un secteur</option>
+<option value="Textile">Textile</option>
+<option value="Machines industrielles">Machines industrielles</option>
+<option value="Décoration">Décoration</option>
+<option value="Autre">Autre</option>
+</select>
+</div>
+<div class="field">
 <label for="formule">Formule</label>
 <select id="formule" name="formule">
 <option value="Je ne sais pas encore">Je ne sais pas encore</option>
@@ -253,11 +351,11 @@
 <option value="Clé en main">Clé en main</option>
 </select>
 </div>
+</div>
 <div class="field">
 <label for="quantite">Quantité souhaitée</label>
 <input id="quantite" name="quantite" type="text" required maxlength="80" placeholder="ex. 500 pièces">
 <p class="error" id="quantite-err"></p>
-</div>
 </div>
 <div class="field">
 <label for="produit">Décrivez le produit recherché</label>
@@ -271,8 +369,14 @@
 <div id="form-status" class="form-status" role="status" aria-live="polite" hidden></div>
 <button type="submit" class="btn btn-red">Envoyer ma demande</button>
 </form>
+</div>
 </section>
 </main>
+
+<a class="wa-float" data-config-link="whatsapp" href="#" aria-label="Nous écrire sur WhatsApp" hidden>
+<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 12.04 2zm0 18.15a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.24 8.24 0 0 1 8.24 8.25c0 4.54-3.7 8.23-8.25 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+</a>
+<button class="to-top" type="button" aria-label="Revenir en haut de la page"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
 
 <footer class="site-footer">
 <div class="container footer-inner">

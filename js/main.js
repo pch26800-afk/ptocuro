@@ -28,6 +28,84 @@
   var annee = document.getElementById("annee");
   if (annee) annee.textContent = new Date().getFullYear();
 
+  // --- Bouton WhatsApp flottant ---
+  document.querySelectorAll('[data-config-link="whatsapp"]').forEach(function (a) {
+    if (!config.whatsapp) return;
+    a.href = "https://wa.me/" + config.whatsapp.replace(/\D/g, "");
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.hidden = false;
+  });
+
+  // --- Animations ---
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Compteurs des chiffres clés
+  function countUp(el) {
+    var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+    if (reduceMotion || target === 0) { el.textContent = target; return; }
+    var start = null, dur = 1400;
+    function tick(t) {
+      if (!start) start = t;
+      var k = Math.min((t - start) / dur, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - k, 3)));
+      if (k < 1) requestAnimationFrame(tick);
+    }
+    el.textContent = "0";
+    requestAnimationFrame(tick);
+  }
+
+  // Apparition au défilement
+  var revealEls = document.querySelectorAll("[data-reveal]");
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add("is-visible");
+        en.target.querySelectorAll("[data-count]").forEach(countUp);
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("is-visible"); });
+  }
+
+  // En-tête, barre de progression, bouton « haut de page »
+  var header = document.querySelector(".site-header");
+  var progress = document.querySelector(".scroll-progress");
+  var toTop = document.querySelector(".to-top");
+  var ticking = false;
+  function onScroll() {
+    var y = window.scrollY || window.pageYOffset;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if (header) header.classList.toggle("scrolled", y > 8);
+    if (progress) progress.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
+    if (toTop) toTop.classList.toggle("show", y > 700);
+    ticking = false;
+  }
+  window.addEventListener("scroll", function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+  }, { passive: true });
+  onScroll();
+  if (toTop) toTop.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  });
+
+  // Lien du menu correspondant à la section visible
+  var navLinks = document.querySelectorAll('.nav a[href^="#"]:not(.btn)');
+  if ("IntersectionObserver" in window && navLinks.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        navLinks.forEach(function (a) {
+          a.classList.toggle("active", !!en.target.id && a.getAttribute("href") === "#" + en.target.id);
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    document.querySelectorAll("main > section").forEach(function (sec) { spy.observe(sec); });
+  }
+
   // --- Menu mobile ---
   var toggle = document.querySelector(".menu-toggle");
   var nav = document.getElementById("nav");
@@ -53,6 +131,14 @@
   document.querySelectorAll("[data-formule]").forEach(function (btn) {
     btn.addEventListener("click", function () {
       if (formuleSelect) formuleSelect.value = btn.getAttribute("data-formule");
+    });
+  });
+
+  // --- Cartes secteurs : présélection dans le formulaire ---
+  var secteurSelect = document.getElementById("secteur");
+  document.querySelectorAll("[data-secteur]").forEach(function (card) {
+    card.addEventListener("click", function () {
+      if (secteurSelect) secteurSelect.value = card.getAttribute("data-secteur");
     });
   });
 
@@ -145,6 +231,7 @@
       "Nom et société": form.nom.value.trim(),
       "E-mail": form.email.value.trim(),
       "Téléphone": form.telephone.value.trim() || "—",
+      "Secteur": form.secteur.value,
       "Formule": form.formule.value,
       "Quantité": form.quantite.value.trim(),
       "Produit": form.produit.value.trim()
@@ -152,7 +239,7 @@
   }
 
   function mailtoFallback(data) {
-    var body = ["Nom et société", "E-mail", "Téléphone", "Formule", "Quantité", "Produit"]
+    var body = ["Nom et société", "E-mail", "Téléphone", "Secteur", "Formule", "Quantité", "Produit"]
       .map(function (k) { return k + " : " + data[k]; }).join("\n");
     return "mailto:" + config.email + "?subject=" + encodeURIComponent(data.subject) +
       "&body=" + encodeURIComponent(body);
