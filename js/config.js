@@ -18,7 +18,7 @@
  *  visiteur avec la demande pré-remplie (aucune demande n'est perdue).
  */
 window.PROCURO_CONFIG = {
-  email: "[VOTRE E-MAIL]",
+  email: "contact@procuro-group.com",
   telephone: "[VOTRE NUMÉRO]",
   whatsapp: "",
   delaiReponse: "24 h ouvrées"
