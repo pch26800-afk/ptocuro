@@ -4,23 +4,20 @@
  * ============================================================
  *
  *  email        : adresse affichée sur le site (section Contact, pages légales).
- *  emailFormulaire : destinataire des demandes du formulaire de devis. Ici, l'identifiant
- *                 FormSubmit qui masque l'adresse réelle (elle-même ou une adresse e-mail).
+ *  cleWeb3forms : clé d'accès Web3Forms (https://web3forms.com). Les demandes du
+ *                 formulaire de devis arrivent sur l'adresse liée à cette clé.
  *  telephone    : numéro affiché (format libre, ex. "+33 6 12 34 56 78").
  *  whatsapp     : même numéro au format international, chiffres seuls
  *                 (ex. "33612345678"). Laisser "" pour un lien d'appel classique.
  *  delaiReponse : texte affiché après « Réponse sous … » (ex. "24 h ouvrées").
  *
- *  Envoi du formulaire : le site utilise le service gratuit FormSubmit
- *  (https://formsubmit.co), sans compte ni serveur. À la toute première
- *  demande envoyée, FormSubmit vous adresse un e-mail d'activation :
- *  cliquez sur le lien, et les demandes suivantes arriveront directement
- *  dans votre boîte. Si l'envoi échoue, le site ouvre la messagerie du
- *  visiteur avec la demande pré-remplie (aucune demande n'est perdue).
+ *  Envoi du formulaire : service gratuit Web3Forms, sans serveur. Si l'envoi
+ *  échoue, le site propose au visiteur d'envoyer sa demande par e-mail, déjà
+ *  rédigée (aucune demande n'est perdue).
  */
 window.PROCURO_CONFIG = {
   email: "contact@procuro-group.com",
-  emailFormulaire: "32ed6fbacb7afd84ed84dade269ce0fe",
+  cleWeb3forms: "f2607e7c-672b-4241-8c16-bcd7c7bed124",
   telephone: "+33 6 40 13 61 37",
   whatsapp: "33640136137",
   delaiReponse: "24 h ouvrées"

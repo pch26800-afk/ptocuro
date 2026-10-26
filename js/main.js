@@ -4,8 +4,7 @@
   var config = window.PROCURO_CONFIG || {};
   var isEmail = function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v || ""); };
   var emailOk = isEmail(config.email);
-  var isFormId = function (v) { return /^[a-f0-9]{32}$/i.test(v || ""); };
-  var formEmail = isEmail(config.emailFormulaire) || isFormId(config.emailFormulaire) ? config.emailFormulaire : config.email;
+  var formKey = /^[0-9a-f-]{36}$/i.test(config.cleWeb3forms || "") ? config.cleWeb3forms : "";
 
   // --- Coordonnées issues de config.js ---
   document.querySelectorAll("[data-config]").forEach(function (el) {
@@ -138,11 +137,11 @@
 
   function payload() {
     return {
-      _subject: form._subject.value,
-      _template: "table",
-      _captcha: "false",
-      _replyto: form.email.value.trim(),
-      _honey: form._honey.value,
+      access_key: formKey,
+      subject: form.subject.value,
+      from_name: "Site Procuro Group",
+      replyto: form.email.value.trim(),
+      botcheck: form.botcheck.checked,
       "Nom et société": form.nom.value.trim(),
       "E-mail": form.email.value.trim(),
       "Téléphone": form.telephone.value.trim() || "—",
@@ -155,7 +154,7 @@
   function mailtoFallback(data) {
     var body = ["Nom et société", "E-mail", "Téléphone", "Formule", "Quantité", "Produit"]
       .map(function (k) { return k + " : " + data[k]; }).join("\n");
-    return "mailto:" + config.email + "?subject=" + encodeURIComponent(data._subject) +
+    return "mailto:" + config.email + "?subject=" + encodeURIComponent(data.subject) +
       "&body=" + encodeURIComponent(body);
   }
 
@@ -163,11 +162,11 @@
     e.preventDefault();
     statusBox.hidden = true;
     if (!validate()) return;
-    if (form._honey.value) return; // robot
+    if (form.botcheck.checked) return; // robot
 
     var data = payload();
-    if (!isEmail(formEmail) && !isFormId(formEmail)) {
-      showStatus("err", "Le formulaire n'est pas encore configuré : renseignez l'adresse e-mail dans <code>js/config.js</code>.");
+    if (!formKey) {
+      showStatus("err", "Le formulaire n'est pas encore configuré : renseignez la clé Web3Forms dans <code>js/config.js</code>.");
       return;
     }
 
@@ -177,7 +176,7 @@
     var ctrl = window.AbortController ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 20000);
 
-    fetch("https://formsubmit.co/ajax/" + encodeURIComponent(formEmail), {
+    fetch("https://api.web3forms.com/submit", {
       method: "POST",
       signal: ctrl ? ctrl.signal : undefined,
       headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -202,9 +201,6 @@
           "\">Cliquez ici pour envoyer votre demande par e-mail</a> (elle est déjà rédigée).";
         if (err && err.name === "AbortError") {
           showStatus("err", "<strong>Le service d'envoi ne répond pas pour le moment.</strong> " + fallback);
-        } else if (/activat/i.test(msg)) {
-          showStatus("err", "<strong>Formulaire en attente d'activation.</strong> Un e-mail d'activation vient d'être envoyé " +
-            "au propriétaire du site. En attendant : " + fallback);
         } else if (location.protocol === "file:") {
           showStatus("err", "Le formulaire ne fonctionne que sur le site en ligne (pas en ouvrant le fichier sur l'ordinateur). " + fallback);
         } else {
