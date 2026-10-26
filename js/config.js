@@ -4,7 +4,8 @@
  * ============================================================
  *
  *  email        : adresse affichée sur le site (section Contact, pages légales).
- *  emailFormulaire : adresse qui reçoit les demandes du formulaire de devis.
+ *  emailFormulaire : destinataire des demandes du formulaire de devis. Ici, l'identifiant
+ *                 FormSubmit qui masque l'adresse réelle (elle-même ou une adresse e-mail).
  *  telephone    : numéro affiché (format libre, ex. "+33 6 12 34 56 78").
  *  whatsapp     : même numéro au format international, chiffres seuls
  *                 (ex. "33612345678"). Laisser "" pour un lien d'appel classique.
@@ -19,7 +20,7 @@
  */
 window.PROCURO_CONFIG = {
   email: "contact@procuro-group.com",
-  emailFormulaire: "charrel.paul@outlook.com",
+  emailFormulaire: "32ed6fbacb7afd84ed84dade269ce0fe",
   telephone: "+33 6 40 13 61 37",
   whatsapp: "33640136137",
   delaiReponse: "24 h ouvrées"

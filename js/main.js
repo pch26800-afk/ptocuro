@@ -4,7 +4,8 @@
   var config = window.PROCURO_CONFIG || {};
   var isEmail = function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v || ""); };
   var emailOk = isEmail(config.email);
-  var formEmail = isEmail(config.emailFormulaire) ? config.emailFormulaire : config.email;
+  var isFormId = function (v) { return /^[a-f0-9]{32}$/i.test(v || ""); };
+  var formEmail = isEmail(config.emailFormulaire) || isFormId(config.emailFormulaire) ? config.emailFormulaire : config.email;
 
   // --- Coordonnées issues de config.js ---
   document.querySelectorAll("[data-config]").forEach(function (el) {
@@ -165,7 +166,7 @@
     if (form._honey.value) return; // robot
 
     var data = payload();
-    if (!isEmail(formEmail)) {
+    if (!isEmail(formEmail) && !isFormId(formEmail)) {
       showStatus("err", "Le formulaire n'est pas encore configuré : renseignez l'adresse e-mail dans <code>js/config.js</code>.");
       return;
     }
